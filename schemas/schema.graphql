@@ -1,0 +1,107 @@
+type Latest {
+  adult: Boolean!
+  backdrop_path: String
+  belongs_to_collection: String
+  budget: Int!
+  genres: [String]!
+  homepage: String!
+  id: Int!
+  imdbDd: String
+  original_language: String!
+  original_title: String!
+  overview: String!
+  popularity: Float!
+  poster_path: String
+  production_companies: [String]!
+  production_countries: [String]!
+  release_date: String!
+  revenue: Int!
+  runtime: Int!
+  spoken_languages: [String]!
+  status: String!
+  tagline: String!
+  title: String!
+  video: Boolean!
+  vote_average: Float!
+  vote_count: Int!
+}
+
+type Popular {
+  adult: Boolean!
+  backdrop_path: String
+  genre_ids: [Int]
+  id: Int!
+  original_language: String
+  original_title: String
+  overview: String
+  popularity: Float!
+  poster_path: String
+  release_date: String
+  title: String
+  video: Boolean!
+  vote_average: Float
+  vote_count: Int
+}
+
+type Genre {
+  id: Int!
+  name: String!
+}
+
+type MoviePopularResponse {
+  page: Int!
+  results: [Popular]!
+  total_pages: Int!
+  total_results: Int!
+}
+
+type GenresResponse {
+  genres: [Genre]!
+}
+
+type KnownFor {
+  adult: Boolean
+  backdrop_path: String
+  first_air_date: String
+  genre_ids: [Int]!
+  id: Int!
+  media_type: String!
+  name: String
+  origin_country: [String]
+  original_language: String!
+  original_name: String
+  original_title: String
+  overview: String!
+  poster_path: String!
+  release_date: String
+  title: String
+  video: Boolean
+  vote_average: Float!
+  vote_count: Int!
+}
+
+type Person {
+  adult: Boolean!
+  gender: Int!
+  id: Int!
+  known_for: [KnownFor]!
+  known_for_department: String!
+  name: String!
+  popularity: Float!
+  profile_path: String!
+}
+
+type PersonPopularResponse {
+  page: Int!
+  results: [Person]!
+  total_pages: Int!
+  total_results: Int!
+}
+
+type Query {
+  movie_latest(language: String): Latest!
+  movie_popular(language: String, page: Int, region: String): MoviePopularResponse!
+  genres_movie(language: String): GenresResponse!
+  genres_tv(language: String): GenresResponse!
+  person_popular(language: String): PersonPopularResponse!
+}
